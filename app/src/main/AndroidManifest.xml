@@ -37,6 +37,7 @@
     </queries>
 
     <application
+        android:hardwareAccelerated="true"
         android:name="com.foobnix.LibreraApp"
         android:icon="${appIcon}"
         android:label="${appName}"
