@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -24,8 +25,6 @@ import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.DictsHelper.DictItem;
 import com.foobnix.pdf.info.R;
 
-import com.foobnix.LibreraApp;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -33,7 +32,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class DialogTranslateFromTo {
-    public static final String CHINESE_SIMPLE = "zh-rCH";
+    public static final String CHINESE_SIMPLE = "zh-rCN";
     public static final String CHINESE_TRADITIOANAL = "zh-rTW";
     static Map<String, String> langs = new LinkedHashMap<String, String>();
     static {

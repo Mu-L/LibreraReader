@@ -29,7 +29,7 @@ public class WhatsNewUpdateTexts {
 
         codes.put("tr", "tr-TR");
         codes.put("zh-rTW", "zh-TW");
-        codes.put("zh-rCH", "zh-CH");
+        codes.put("zh-rCN", "zh-CN");
 
         codes.put("nl", "nl-NL");
         codes.put("no", "no-NO");
