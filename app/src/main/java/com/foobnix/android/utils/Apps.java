@@ -1,5 +1,8 @@
 package com.foobnix.android.utils;
 
+import static android.content.Context.ACCESSIBILITY_SERVICE;
+import static android.provider.Settings.System.SCREEN_BRIGHTNESS;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,9 +23,6 @@ import android.widget.Toast;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
-
-import static android.content.Context.ACCESSIBILITY_SERVICE;
-import static android.provider.Settings.System.SCREEN_BRIGHTNESS;
 
 public class Apps {
 
@@ -74,17 +74,6 @@ public class Apps {
             PackageInfo pInfo = context.getPackageManager()
                                        .getPackageInfo(context.getPackageName(), 0);
             return pInfo.versionCode;
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        return -1;
-    }
-
-    public static int getTargetSdkVersion(Context context) {
-        try {
-            PackageInfo pInfo = context.getPackageManager()
-                                       .getPackageInfo(context.getPackageName(), 0);
-            return pInfo.applicationInfo.targetSdkVersion;
         } catch (Exception e) {
             LOG.e(e);
         }

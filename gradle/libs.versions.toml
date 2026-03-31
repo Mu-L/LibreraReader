@@ -44,8 +44,9 @@ okioParent="1.17.6"
 okhttpDigest="3.1.1"
 
 targetSdk="36"
-minSdk="24"
 compileSdk="36"
+
+minSdk="24"
 jvmTarget = "21"
 
 composeHotReload = "1.0.0"
@@ -116,7 +117,7 @@ rtfparserkit = { module = "com.github.joniles:rtfparserkit", version.ref = "rtfp
 runner = { module = "androidx.test:runner", version.ref = "runner" }
 stax-api = { module = "javax.xml.stream:stax-api", version.ref = "staxApi" }
 user-messaging-platform = { module = "com.google.android.ump:user-messaging-platform", version.ref = "userMessagingPlatform" }
-work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
+work-runtime = { module = "androidx.work:work-runtime", version = "2.11.2" }
 zip4j = { module = "net.lingala.zip4j:zip4j", version = "2.11.6" }
 xmlutil-serialization = { module = "io.github.pdvrieze.xmlutil:serialization", version.ref = "xmlutil" }
 
