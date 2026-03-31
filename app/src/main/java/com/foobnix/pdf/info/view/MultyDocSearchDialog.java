@@ -33,7 +33,6 @@ import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -42,10 +41,10 @@ import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.search.view.ProgressTask;
 import com.foobnix.ui2.fragment.SearchFragment2;
 
-import org.ebookdroid.BookType;
-import org.ebookdroid.core.codec.CodecContext;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
+import org.ebookdroid.droids.mupdf.codec.MuPdfContext;
+import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -346,20 +345,32 @@ public class MultyDocSearchDialog {
     public static int searchInThePDF(String path, String text, final Handler update1) {
         try {
             text = text.toLowerCase(Locale.US);
-            CodecContext ctx = BookType.getCodecContextByPath(path);
+            MuPdfContext ctx;
+
             CodecDocument openDocument = null;
             CacheZipUtils.cacheLock.lock();
             DragingDialogs.lastSearchText = text;
             try {
-                String zipPath = CacheZipUtils.extracIfNeed(path, CacheDir.ZipApp).unZipPath;
-                openDocument = ctx.openDocument(zipPath, "");
-                LOG.d("searchInThePDF", openDocument, zipPath);
+                //String zipPath = CacheZipUtils.extracIfNeed(path, CacheDir.ZipApp).unZipPath;
+               // openDocument = ImageExtractor.getNewCodecContext(path,"",1000,600);
+
+                 ctx = new MuPdfContext() {
+                    @Override public CodecDocument openDocumentInner(String fileName, String password) {
+                        return null;
+                    }
+                };
+                openDocument = new MuPdfDocument(ctx, MuPdfDocument.FORMAT_PDF, path, "");
+
+
+                LOG.d("searchInThePDF", openDocument);
             } finally {
                 CacheZipUtils.cacheLock.unlock();
             }
 
             if (!Model.get().isSearcingRun) {
-                openDocument.recycle();
+
+                    openDocument.recycle();
+
                 ctx.recycle();
                 return -1;
             }
