@@ -685,4 +685,5 @@
    <string name="msg_sync">Synkronoi [Librera]-kansio muiden laitteiden kanssa Google Driven tai kolmannen osapuolen sovellusten kautta.</string>
    <string name="display_alert_if_cropping_is_on">Näytä hälytys, jos rajaus on käytössä</string>
    <string name="scan_for_new_books_at_launch">Skannaa uudet kirjat julkaisun yhteydessä</string>
+   <string name="show_contrast_and_brightness_button">Näytä kontrasti ja kirkkaus -painike</string>
 </resources>

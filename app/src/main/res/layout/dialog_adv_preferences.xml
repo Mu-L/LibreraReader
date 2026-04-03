@@ -479,6 +479,12 @@
             android:layout_height="wrap_content"
             android:text="@string/show_print_edition_page_numbers_epub3" />
 
+        <CheckBox
+            android:id="@+id/isShowContrastButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_contrast_and_brightness_button" />
+
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/decodingThreadPriority"
             android:layout_width="match_parent"

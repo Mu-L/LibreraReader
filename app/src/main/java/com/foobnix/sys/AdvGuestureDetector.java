@@ -6,6 +6,7 @@ import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -20,7 +21,6 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 
 import org.ebookdroid.BookType;
-import com.foobnix.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.touch.IGestureDetector;
 import org.ebookdroid.common.touch.IMultiTouchListener;
@@ -255,7 +255,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float vX, final float vY) {
         try {
 
-            if (AppState.get().isBrighrnessEnable && e1.getX() < BrightnessHelper.BRIGHTNESS_WIDTH) {
+            if (AppState.get().isBrightnessEnable && e1.getX() < BrightnessHelper.BRIGHTNESS_WIDTH) {
                 return false;
             }
 

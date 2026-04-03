@@ -3839,10 +3839,10 @@ public class DragingDialogs {
                 });
 
                 CheckBox isBrighrnessEnable = inflate.findViewById(R.id.isBrighrnessEnable);
-                isBrighrnessEnable.setChecked(AppState.get().isBrighrnessEnable);
+                isBrighrnessEnable.setChecked(AppState.get().isBrightnessEnable);
                 isBrighrnessEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
                     @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isBrighrnessEnable = isChecked;
+                        AppState.get().isBrightnessEnable = isChecked;
                     }
                 });
 
@@ -3965,6 +3965,15 @@ public class DragingDialogs {
                         AppState.get().isVibration = isChecked;
                     }
                 });
+
+                CheckBox isShowContrastButton = inflate.findViewById(R.id.isShowContrastButton);
+                isShowContrastButton.setChecked(AppState.get().isShowContrastButton);
+                isShowContrastButton.setOnCheckedChangeListener((b, isChecked) -> {
+                    AppState.get().isShowContrastButton = isChecked;
+                    onRefresh.run();
+                });
+
+
                 CheckBox isExperimental = inflate.findViewById(R.id.isExperimental);
                 isExperimental.setVisibility(TxtUtils.visibleIf(BookType.EPUB.is(controller.getCurrentBook()
                                                                                            .getPath())));

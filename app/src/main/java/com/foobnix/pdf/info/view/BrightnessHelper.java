@@ -391,7 +391,7 @@ public class BrightnessHelper {
     }
 
     public boolean onActionMove(final MotionEvent event) {
-        if (!AppState.get().isBrighrnessEnable) {
+        if (!AppState.get().isBrightnessEnable) {
             return false;
         }
 

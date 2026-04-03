@@ -685,4 +685,5 @@
    <string name="msg_sync">गूगल ड्राइव या तृतीय-पक्ष ऐप्स के माध्यम से [Librera] फ़ोल्डर को अन्य उपकरणों के साथ सिंक्रनाइज़ करें।</string>
    <string name="display_alert_if_cropping_is_on">क्रॉपिंग चालू होने पर अलर्ट प्रदर्शित करें</string>
    <string name="scan_for_new_books_at_launch">लॉन्च के समय नई किताबों की तलाश करें</string>
+   <string name="show_contrast_and_brightness_button">कंट्रास्ट और ब्राइटनेस बटन दिखाएँ</string>
 </resources>

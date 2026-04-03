@@ -152,7 +152,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            onBC.underline(AppState.get().isEnableBCOptional1);
+            ViewBinder.updateBrightness(onBC);
             IMG.clearMemoryCache();
             int position = viewPager.getCurrentItem();
             ImagePageFragment
@@ -553,14 +553,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         // }
 
         onBC = (UnderlineImageView) findViewById(R.id.onBC);
-        onBC.underline(AppState.get().isEnableBCOptional1);
-        onBC.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(final View v) {
-                DragingDialogs.dialogContrastAndBrigtness(anchor, dc, reloadDocBrigntness, reloadDoc);
-            }
-        });
+              onBC.setOnClickListener(
+                v -> DragingDialogs.dialogContrastAndBrigtness(anchor, dc, reloadDocBrigntness, reloadDoc));
 
         dayNightButton.setImageResource(!AppState.get().isDayNotInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_231_moon);
 
@@ -572,11 +566,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         });
 
-        onBC.setVisibility(View.GONE);
-
-        if (DocumentController.isEinkOrMode(this) || AppState.get().isEnableBCOptional1) {
-            onBC.setVisibility(View.VISIBLE);
-        }
+        ViewBinder.updateBrightness(onBC);
 
         onMove.setVisibility(DocumentController.isEinkOrMode(this) && !isTextFomat ? View.VISIBLE : View.GONE);
 
@@ -1149,10 +1139,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         onCrop.setVisibility(View.VISIBLE);
                     }
                     onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
-                    onBC.setVisibility(View.GONE );
-                    if (DocumentController.isEinkOrMode(dc.getActivity()) || AppState.get().isEnableBCOptional1) {
-                        onBC.setVisibility(View.VISIBLE);
-                    }
 
                     onCrop.underline(AppSP.get().isCrop);
                     onCrop.invalidate();
@@ -1625,6 +1611,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             hideShow();
             TTSEngine.get().stop();
             showPagesHelper();
+            ViewBinder.updateBrightness(onBC);
 
         }
     };
@@ -2210,6 +2197,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             pagerAdapter.notifyDataSetChanged();
         }
 
+        ViewBinder.updateBrightness(onBC);
+
     }
 
     public void applyRTL() {
@@ -2592,7 +2581,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            onBC.underline(AppState.get().isEnableBCOptional1);
+
+            ViewBinder.updateBrightness(onBC);
             // dc.getOutline(null, false);
             //dc.saveCurrentPageAsync();
             createAdapter();

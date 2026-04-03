@@ -372,7 +372,7 @@ public class AppState {
     public boolean sortByReverse = false;
     public int sortByFavorite = BR_SORT_BY_STAR_TIME;
     public boolean sortByFavoriteReverse = false;
-    @IgnoreHashCode public boolean isBrighrnessEnable = false;
+    @IgnoreHashCode public boolean isBrightnessEnable = false;
     @IgnoreHashCode public boolean isAllowMinBrigthness = false;
     public boolean isShowRateUsOnExit = true;
     @IgnoreHashCode public boolean isRewindEnable = true;
@@ -382,6 +382,8 @@ public class AppState {
     public int brigtnessImage = 0;
     public boolean bolderTextOnImage = false;
     public boolean isEnableBCOptional1 = false;
+
+    @IgnoreHashCode public boolean isShowContrastButton = false;
     @IgnoreHashCode public boolean stopReadingOnCall = true;
     @IgnoreHashCode public int appBrightness = AUTO_BRIGTNESS;
     @IgnoreHashCode public int appBrightnessNight = AUTO_BRIGTNESS;

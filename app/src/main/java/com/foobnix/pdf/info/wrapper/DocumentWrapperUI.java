@@ -270,7 +270,7 @@ public class DocumentWrapperUI {
 
                 @Override
                 public void run() {
-                    onBC.underline(AppState.get().isEnableBCOptional1);
+                    ViewBinder.updateBrightness(onBC);
                     dc.updateRendering();
                 }
             }, null);
@@ -776,10 +776,8 @@ public class DocumentWrapperUI {
         moveRight.setVisibility(Dips.isVertical() ? View.GONE : View.VISIBLE);
         zoomPlus.setVisibility(Dips.isVertical() ? View.GONE : View.VISIBLE);
         zoomMinus.setVisibility(Dips.isVertical() ? View.GONE : View.VISIBLE);
-        onBC.setVisibility(View.GONE);
-        if (DocumentController.isEinkOrMode(dc.getActivity()) || AppState.get().isEnableBCOptional1) {
-            onBC.setVisibility(View.VISIBLE);
-        }
+
+        ViewBinder.updateBrightness(onBC);
 
         onTextReplacement.setVisibility(View.GONE);
         if (dc.isTextFormat()) {
@@ -1122,7 +1120,7 @@ public class DocumentWrapperUI {
 
         onBC = (UnderlineImageView) a.findViewById(R.id.onBC);
         onBC.setOnClickListener(onBCclick);
-        onBC.underline(AppState.get().isEnableBCOptional1);
+
 
         a.findViewById(R.id.toPage).setOnClickListener(toPage);
 
@@ -1763,6 +1761,8 @@ public class DocumentWrapperUI {
         // showHideHavigationBar();
         DocumentController.chooseFullScreen(dc.getActivity(), AppState.get().fullScreenMode);
         showPagesHelper();
+
+        ViewBinder.updateBrightness(onBC);
 
         //try eink fix
 
