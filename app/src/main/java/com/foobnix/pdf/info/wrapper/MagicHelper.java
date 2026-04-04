@@ -896,39 +896,39 @@ public class MagicHelper {
     }
 
     static int[] brightnessContrastMap = new int[256];
-    static int simpleHash = 0;
+
+    static int lastHash = -1;
 
     public static void quickContrast3(int[] arr, int extra_contrast, int delta_brightness) {
 
-        int lum;
+        int hash = extra_contrast * 31 + delta_brightness;
 
-        // Use linear contrast variation; extra_contrast=0 = no change,
-        // extra_contrast=100 = 2x contrast
-        double contrast = (100 + extra_contrast) / 100.0;
+        if (lastHash != hash) {
+            double contrastFactor = (100.0 + extra_contrast) / 100.0;
 
-        int hash = extra_contrast * 3 + delta_brightness * 2;
-        if (simpleHash != hash) {
-            // each of the 256 values we can read is mapped to the output values
-            // we
-            // will write
             for (int i = 0; i < 256; i++) {
-                lum = i; // take the input
-                lum = lum - delta_brightness; // apply brightness variation
-                lum = (int) (((lum - 128) * contrast) + 128); // apply contrast
-                if (lum < 0) { // flatten excess
-                    lum = 0;
-                } else if (lum > 255) {
-                    lum = 255;
-                }
-                brightnessContrastMap[i] = (lum << 16) + (lum << 8) + lum; // compose
-                // greyscale
+                // Apply brightness first (standard approach)
+                int val = i + delta_brightness;
+
+                // Apply contrast around the midpoint (128)
+                val = (int) (((val - 128) * contrastFactor) + 128);
+
+                // Clamp values to 0-255 range
+                if (val < 0) val = 0;
+                else if (val > 255) val = 255;
+
+                brightnessContrastMap[i] = val;
             }
-            simpleHash = hash;
+            lastHash = hash;
         }
 
         // process the real image
         for (int i = 0; i < arr.length; i++) {
             int color = arr[i];
+
+            if (color == Color.WHITE || color == Color.BLACK) {
+                continue;
+            }
 
             // Extract channels
             int a = (color >> 24) & 0xFF;
