@@ -928,14 +928,21 @@ public class MagicHelper {
 
         // process the real image
         for (int i = 0; i < arr.length; i++) {
-            // Get luminosity. Also use G and B, with 2x R
-            int temp = arr[i];
-            if (temp == Color.WHITE || temp == Color.BLACK) {
-                continue;
-            }
-            lum = ((temp & 0x00FF0000) >> 17) + ((temp & 0x0000FF00) >> 10) + ((temp & 0x000000FF) >> 2);
-            // retrieve output from map
-            arr[i] = brightnessContrastMap[lum];
+            int color = arr[i];
+
+            // Extract channels
+            int a = (color >> 24) & 0xFF;
+            int r = (color >> 16) & 0xFF;
+            int g = (color >> 8) & 0xFF;
+            int b = color & 0xFF;
+
+            // Apply the pre-calculated mapping to each color channel
+            r = brightnessContrastMap[r];
+            g = brightnessContrastMap[g];
+            b = brightnessContrastMap[b];
+
+            // Recompose the ARGB_8888 integer
+            arr[i] = (a << 24) | (r << 16) | (g << 8) | b;
         }
 
     }
