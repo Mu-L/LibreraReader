@@ -40,7 +40,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.model.AppBook;
-import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -714,7 +713,8 @@ public class MainTabs2 extends AdsFragmentActivity {
     protected void onResume() {
         super.onResume();
 
-        AppsConfig.isCloudsEnable = UITab.isShowCloudsPreferences();
+        //AppsConfig.isCloudsEnable = UITab.isShowCloudsPreferences();
+        AppsConfig.isCloudsEnable = false;
 
         LOG.d(TAG, "onResume");
         if (Dips.isEInk()) {
