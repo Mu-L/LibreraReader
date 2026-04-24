@@ -36,6 +36,7 @@ public class AppsConfig {
             IS_FDROID =
             LibreraBuildConfig.FLAVOR.equals("fdroid") || LibreraBuildConfig.FLAVOR.equals("huawei");
     public static final List<String> testDevices = Arrays.asList(
+            "77EA5ED1B6B3C6C8511E2696FB1B7D08",
             "394FC2536F98E69D313F47CA4B26AB2D",
             "15B8E113746E8241A97A23D7F6FEAA2B",
             "DBD4EE494036921735BA1981B883D379",
