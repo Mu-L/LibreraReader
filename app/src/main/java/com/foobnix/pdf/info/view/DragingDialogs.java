@@ -211,10 +211,23 @@ public class DragingDialogs {
             return;
         }
         LOG.d("webView DragingDialog", url);
-
+        final WebView wv = new WebView(anchor.getContext());
         DragingPopup dialog = new DragingPopup(url, anchor, 300, 440) {
+
+            @Override public void beforeCreate() {
+                setTitlePopupIcon(R.drawable.glyphicons_498_more_vertical);
+                titlePopupMenu = new MyPopupMenu(anchor.getContext(), anchor);
+
+                titlePopupMenu.getMenu()
+                              .add(anchor.getContext()
+                                         .getString(R.string.open_in_browser))
+                              .setOnMenuItemClickListener(item -> {
+                                  Urls.open(anchor.getContext(), url);
+                                  return false;
+                              });
+            }
             @Override @SuppressLint("NewApi") public View getContentView(LayoutInflater inflater) {
-                final WebView wv = new WebView(anchor.getContext());
+               // final WebView wv = new WebView(anchor.getContext());
                 wv.getSettings().setUserAgentString(OPDS.USER_AGENT);
                 wv.getSettings().setJavaScriptEnabled(true);
                 wv.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
@@ -1789,7 +1802,10 @@ public class DragingDialogs {
                             String url = providers.get(name).trim();
                             //Urls.open(anchor.getContext(), url);
                             closeDialog();
-                            dialogWebView(anchor, url);
+
+                            //    Urls.open(anchor.getContext(), url);
+                                dialogWebView(anchor, url);
+
 
                             return false;
                         });
@@ -1806,9 +1822,11 @@ public class DragingDialogs {
                     for (final String name : providers.keySet()) {
                         popupMenu.getMenu().add(name).setOnMenuItemClickListener(item -> {
                             String url = providers.get(name).trim();
-                            //Urls.open(anchor.getContext(), providers.get(name).trim());
+
                             closeDialog();
-                            dialogWebView(anchor, url);
+
+                           //     Urls.open(anchor.getContext(), url);
+                                dialogWebView(anchor, url);
                             return false;
                         });
                     }
@@ -5275,7 +5293,7 @@ public class DragingDialogs {
                 isLineTitleBoldText.setVisibility(View.GONE);
 
                 //~isLineTitleBoldText
-                
+
                 //charsets
 
                 CheckBox isCharacterEncoding = inflate.findViewById(R.id.isCharacterEncoding);
