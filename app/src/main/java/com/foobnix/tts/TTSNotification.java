@@ -20,7 +20,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.LibreraApp;
@@ -36,7 +35,6 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.TTSWidget;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
-import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
@@ -252,6 +250,7 @@ public class TTSNotification {
         if (TTSEngine.get().isShutdown()) {
             hideNotification();
         } else if (handler != null) {
+            handler.removeCallbacks(run);
             handler.postDelayed(run, 500);
         }
 
