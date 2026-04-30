@@ -43,6 +43,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -87,7 +88,16 @@ public class EpubExtractor extends BaseExtractor {
 
         ArchiveEntry nextEntry = null;
 
-        ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));
+        File outputFile = new File(output);
+
+        try {
+            Objects.requireNonNull(outputFile.getParentFile())
+                   .mkdirs();
+        }catch (Exception ignored){
+
+        }
+
+        ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(outputFile));
         zos.setLevel(0);
 
         HypenUtils.applyLanguage(AppSP.get().hypenLang);
